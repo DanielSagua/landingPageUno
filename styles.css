@@ -3,26 +3,29 @@ body {
 }
 
 .hero-section .carousel-item {
-    height: 80vh;
-    background: #000;
-    color: white;
-    position: relative;
+    height: 600px;
 }
 
 .hero-section .carousel-item img {
     object-fit: cover;
     height: 100%;
-    opacity: 0.7;
 }
 
-.hero-section .carousel-caption {
-    bottom: 30%;
+.banner {
+    background-color: #007bff;
 }
 
-.card {
-    transition: transform 0.2s;
+.banner h2 {
+    margin: 0;
+    padding: 0;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.banner p {
+    margin: 0;
+    padding: 0;
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
 }
