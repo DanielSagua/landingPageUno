@@ -6,6 +6,12 @@
     <title>Tienda de Gorros</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("VQmtjXJMWEnmjX9R3");
+       })();
+    </script>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">
 
@@ -23,6 +29,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#videos">Videos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contacto">Contacto</a>
@@ -75,51 +84,41 @@
         <div class="row">
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro 1">
+                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro de Lana">
                     <div class="card-body">
                         <h5 class="card-title">Gorro de Lana</h5>
                         <p class="card-text">Perfecto para el invierno.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-producto='{"nombre": "Gorro de Lana", "sku": "001", "descripcion": "Perfecto para el invierno. Con un diseño clásico y elegante.", "precio": "$20", "imagen": "img/g1.jpg"}'>Ver más</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro 1">
+                    <img src="img/g2.jpg" class="card-img-top" alt="Gorro de Algodón">
                     <div class="card-body">
-                        <h5 class="card-title">Gorro de Lana</h5>
-                        <p class="card-text">Perfecto para el invierno.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <h5 class="card-title">Gorro de Algodón</h5>
+                        <p class="card-text">Ideal para climas templados.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-producto='{"nombre": "Gorro de Algodón", "sku": "002", "descripcion": "Ideal para climas templados. Suave y cómodo.", "precio": "$15", "imagen": "img/g2.jpg"}'>Ver más</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="img/g2.jpg" class="card-img-top" alt="Gorro 1">
+                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro de Lana">
                     <div class="card-body">
                         <h5 class="card-title">Gorro de Lana</h5>
                         <p class="card-text">Perfecto para el invierno.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-producto='{"nombre": "Gorro de Lana", "sku": "001", "descripcion": "Perfecto para el invierno. Con un diseño clásico y elegante.", "precio": "$20", "imagen": "img/g1.jpg"}'>Ver más</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card">
-                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro 1">
+                    <img src="img/g2.jpg" class="card-img-top" alt="Gorro de Algodón">
                     <div class="card-body">
-                        <h5 class="card-title">Gorro de Lana</h5>
-                        <p class="card-text">Perfecto para el invierno.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="img/g1.jpg" class="card-img-top" alt="Gorro 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Gorro de Lana</h5>
-                        <p class="card-text">Perfecto para el invierno.</p>
-                        <a href="#" class="btn btn-primary">Comprar</a>
+                        <h5 class="card-title">Gorro de Algodón</h5>
+                        <p class="card-text">Ideal para climas templados.</p>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" data-producto='{"nombre": "Gorro de Algodón", "sku": "002", "descripcion": "Ideal para climas templados. Suave y cómodo.", "precio": "$15", "imagen": "img/g2.jpg"}'>Ver más</button>
                     </div>
                 </div>
             </div>
@@ -127,37 +126,108 @@
         </div>
     </section>
 
+    <!-- Modal de Producto -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Detalle del Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img id="modalImagen" src="" class="img-fluid mb-3" alt="Imagen del Producto">
+                    <h5 id="modalNombre"></h5>
+                    <p id="modalSku"></p>
+                    <p id="modalDescripcion"></p>
+                    <p id="modalPrecio" class="text-primary fw-bold"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Banner de Redes Sociales -->
     <section class="banner bg-dark text-white text-center py-5">
         <h2>Síguenos en Redes Sociales</h2>
         <p>@tiendadegorros en todas las plataformas</p>
     </section>
 
+    <!-- Sección de Videos -->
+    <section id="videos" class="container my-5">
+        <h2 class="text-center mb-4">Videos Destacados</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID1" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID2" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID2" allowfullscreen></iframe>
+                </div>
+            </div>
+            <!-- Agrega más iframes para más videos -->
+        </div>
+    </section>
+
+    <!-- Banner de Empresas -->
+    <section class="banner bg-dark text-white text-center py-5">
+        <h2 class="mb-5">Empresas con las que trabajamos</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="img/logo.png" class="img-fluid" alt="Empresa 1">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/logo.png" class="img-fluid" alt="Empresa 2">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/logo.png" class="img-fluid" alt="Empresa 3">
+                </div>
+                <div class="col-md-3">
+                    <img src="img/logo.png" class="img-fluid" alt="Empresa 4">
+                </div>
+                <!-- Agrega más columnas para más empresas -->
+            </div>
+        </div>
+    </section>
+
     <!-- Contacto -->
     <section id="contacto" class="container my-5">
         <h2 class="text-center mb-4">Contáctanos</h2>
-        <form>
+        <form id="contact-form">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" required>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" required>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+                <textarea class="form-control" id="mensaje" name="message" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
+        
     </section>
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Tienda de Gorros. Todos los derechos reservados.</p>
     </footer>
-
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+        (function(){
+            emailjs.init('VQmtjXJMWEnmjX9R3');
+        })();
+    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="scripts.js"></script>
 </body>
